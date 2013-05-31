@@ -9,10 +9,22 @@ var EARTH_RADIUS_MILES = 3959;
  * default sorted by distance from specified point
  * callback: err -> results -> () */
 function findNearby(stations, lng, lat, dist, callback){
-  var query = {
+  //$nearSphere takes into account spherical surface
+  /*var query = {
     'location': {
       '$nearSphere': [ Number(lng), Number(lat) ],
       '$maxDistance': (dist / EARTH_RADIUS_MILES)
+    }
+  };*/
+
+  /* $geoWithin is 2d NON-Spherical, flat surface, 
+   * probably more appropriate for our land station model */
+  var query = {
+    'location': {
+      '$geoWithin': {
+        '$center': 
+            [ [ Number(lng), Number(lat) ], (dist / EARTH_RADIUS_MILES) ]
+      }
     }
   };
 
