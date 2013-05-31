@@ -1,12 +1,18 @@
 var express = require('express'),
-  app = express();
+  app = express(),
+  Station = require('./models/station');
 
 app.MongoDB = require('mongodb');
 
 /****** Any Additional Configuration ******/
 
 config = require('./config');
-config.init(app);
+config.init(app, function(err, db){
+  app.db = db;
+  db.collection('stations', function(err, stations){
+    app.db.stations = stations;
+  });
+});
 
 
 /****** Application Routes ********/
@@ -16,26 +22,18 @@ app.get('/', function(req, res){
 });
 
 // handle the radius lookup query
-app.post('/rest/stations', function(req, res){
-  var db = app.db,
-    query = {
-      '$nearSphere': {
-        '$geometry': {
-          type: 'Point',
-          coordinates: [ req.query.lng, req.query.lat ]
-        },
-        '$maxDistance': req.query.distance
-      }
-    };
-
-  db.collection('stations', function(err, stations){
-    stations.find(query, function(err, doc){
+app.get('/rest/stations', function(req, res){
+  Station.findNearby(
+    app.db.stations,
+    req.query.lng,
+    req.query.lat,
+    req.query.distance,
+    function(err, docs){
       if(err){
-        res.json(500, { error: err.message });
+        res.send(500, err.message );
       }
-      res.json(200, { stations: doc });
+      res.send(200, docs);
     });
-  });
 });
 
 

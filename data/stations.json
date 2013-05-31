@@ -1,0 +1,28 @@
+{
+  "stations": [
+    {
+      "stationName": "BOS South Station",
+      "location": [ -71.0552, 42.352 ]
+    },
+    {
+      "stationName": "BOS North Station",
+      "location": [ -71.06, 42.367 ]
+    },
+    {
+      "stationName": "Town of Waltham",
+      "location": [ -71.237, 42.376 ]
+    },
+    {
+      "stationName": "Boston Design Center",
+      "location": [ -71.03, 42.34 ]
+    },
+    {
+      "stationName": "Central Park NYC",
+      "location": [ -73.98, 40.77 ]
+    },
+    {
+      "stationName": "Cupertino, CA",
+      "location": [ -122.03, 37.32 ]
+    }
+  ]
+}
