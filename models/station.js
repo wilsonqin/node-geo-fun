@@ -10,23 +10,23 @@ var EARTH_RADIUS_MILES = 3959;
  * callback: err -> results -> () */
 function findNearby(stations, lng, lat, dist, callback){
   //$nearSphere takes into account spherical surface
-  /*var query = {
+  var query = {
     'location': {
       '$nearSphere': [ Number(lng), Number(lat) ],
       '$maxDistance': (dist / EARTH_RADIUS_MILES)
     }
-  };*/
+  };
 
   /* $geoWithin is 2d NON-Spherical, flat surface, 
-   * probably more appropriate for our land station model */
-  var query = {
+   * probably more appropriate for our land station model - divide distance by earth radius? */
+  /*var query = {
     'location': {
       '$geoWithin': {
         '$center': 
             [ [ Number(lng), Number(lat) ], (dist / EARTH_RADIUS_MILES) ]
       }
     }
-  };
+  };*/
 
   stations.find(query, { 'stationName': true, 'location': true })
     .toArray(callback);
