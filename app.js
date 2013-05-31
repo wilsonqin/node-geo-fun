@@ -32,7 +32,7 @@ app.get('/rest/stations', function(req, res){
       if(err){
         res.send(500, err.message );
       }
-      res.send(200, docs);
+      res.send(200, { stations: docs });
     });
 });
 

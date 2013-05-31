@@ -1,0 +1,11 @@
+5/30/13
+Additional TODO's:
+
+Logistics:
+-Create database teardown script? (so no duplicate records in db.stations on the next time runApp.sh is executed)
+-Install a test suite and make some automated unit tests to run
+-Smoke test of the whole system
+
+Other possible issues to address:
+-What about stations with geographic locations that are on the longitude line where 180 becomes -180?
+
