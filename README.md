@@ -1,7 +1,7 @@
 Node Geo Fun
 ====================
 
-Fun with Node.js and MongoDB, demonstrating a use case for a geography based API using geo-spatial indicies.
+Fun with Node.js and MongoDB, demonstrating a use case for a geography based API using geo-spatial indices.
 
 USAGE:
 ---------------------
